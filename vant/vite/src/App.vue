@@ -108,7 +108,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scope>
 body {
   font-size: 16px;
   background-color: #f8f8f8;

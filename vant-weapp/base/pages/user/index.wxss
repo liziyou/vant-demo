@@ -5,7 +5,7 @@
 }
 
 .user-links {
-  padding: 15px 0;
+  //padding: 15px 0;
   font-size: 12px;
   text-align: center;
   background-color: #fff;
@@ -17,5 +17,5 @@
 }
 
 .user-links .van-row {
-  padding: 15px 0;
+  //padding: 15px 0;
 }

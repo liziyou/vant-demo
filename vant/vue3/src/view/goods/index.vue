@@ -108,7 +108,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scope>
 .goods {
   padding-bottom: 50px;
 

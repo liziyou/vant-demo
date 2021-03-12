@@ -66,7 +66,6 @@ body {
   }
 
   &-links {
-    padding: 15px 0;
     font-size: 12px;
     text-align: center;
     background-color: #fff;
