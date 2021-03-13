@@ -14,6 +14,7 @@
 
 <script>
 import { AddressList, Toast, NavBar, Icon } from 'vant'
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   components: {
     [AddressList.name]: AddressList,
@@ -50,60 +51,18 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({ setAddress: 'setCurrentAddressInfo' }),
     onAdd() {
       this.$router.push({ name: 'edit' })
     },
     onEdit(item, index) {
-      Toast('编辑地址:' + index)
+      this.$router.push({ name: 'edit' })
+      this.setAddress(item)
     }
   }
 }
 </script>
 
 <style lang="less" scope>
-.user {
-  &-poster {
-    width: 100%;
-    height: 53vw;
-    display: block;
-  }
 
-  &-group {
-    margin-bottom: 15px;
-  }
-
-  &-links {
-    font-size: 12px;
-    text-align: center;
-    background-color: #fff;
-
-    .van-icon {
-      display: block;
-      font-size: 24px;
-    }
-  }
-}
-.my-swipe {
-  .van-swipe-item {
-    color: #fff;
-    font-size: 20px;
-    line-height: 150px;
-    text-align: center;
-    top:40px;
-    background-color:#fff;
-    height: 300px;
-    img {
-      display: block;
-      box-sizing: border-box;
-      width: 100%;
-      height: 240px;
-      padding: 30px 60px;
-      background-color: #fff;
-      pointer-events: none;
-    }
-  }
-  .van-swipe__indicator {
-    background: gray;
-  }
-}
 </style>

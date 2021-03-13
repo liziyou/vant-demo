@@ -5,6 +5,7 @@
       show-postal
       show-delete
       show-set-default
+      :address-info="addressInfo"
       show-search-result
       :search-result="searchResult"
       :area-columns-placeholder="['请选择', '请选择', '请选择']"
@@ -18,6 +19,7 @@
 <script>
 import { AddressEdit, Toast, NavBar, Icon } from 'vant'
 import AreaList from '../../../static/js/area'
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   components: {
     [AddressEdit.name]: AddressEdit,
@@ -28,8 +30,17 @@ export default {
   data() {
     return {
       areaList: AreaList,
-      searchResult: []
+      searchResult: [],
+      addressInfo: {}
     }
+  },
+  computed: {
+    ...mapGetters(['getCurrentAddressInfo'])
+  },
+  created() {
+    console.log('getAddress')
+    console.log(this.getCurrentAddressInfo)
+    this.addressInfo = this.getCurrentAddressInfo
   },
   methods: {
     onSave() {
@@ -39,6 +50,8 @@ export default {
       Toast('delete')
     },
     onChangeDetail(val) {
+      console.log('val')
+      console.log(val)
       if (val) {
         this.searchResult = [
           {
@@ -55,28 +68,7 @@ export default {
 </script>
 
 <style lang="less" scope>
-.user {
-  &-poster {
-    width: 100%;
-    height: 53vw;
-    display: block;
-  }
 
-  &-group {
-    margin-bottom: 15px;
-  }
-
-  &-links {
-    font-size: 12px;
-    text-align: center;
-    background-color: #fff;
-
-    .van-icon {
-      display: block;
-      font-size: 24px;
-    }
-  }
-}
 .my-swipe {
   .van-swipe-item {
     color: #fff;

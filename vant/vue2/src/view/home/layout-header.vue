@@ -1,7 +1,7 @@
 <template>
   <div class="header">
-    <van-nav-bar :title="title" left-text="返回" left-arrow :fixed="true">
-      <van-icon slot="right" name="search" />
+    <van-nav-bar :title="title" left-arrow :fixed="true" class="left-icon" @click-left="onClickLeft">
+      <!-- <van-icon slot="right" name="search" /> -->
     </van-nav-bar>
     <div class="header-content">
       <router-view />
@@ -40,12 +40,22 @@ export default {
     title() {
       return this.$route.meta.title
     }
+  },
+  methods: {
+    onClickLeft() {
+      this.$router.back(-1)
+    }
   }
 }
 </script>
 
 <style lang="less" scope>
 .header {
+  .left-icon {
+    .van-icon {
+      color: #323233;
+    }
+  }
   &-content {
     margin-top: 60px;
     display: block;

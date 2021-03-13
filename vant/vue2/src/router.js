@@ -28,14 +28,14 @@ const routes = [
     name: 'user',
     component: () => import('./view/home/layout-footer.vue'),
     meta: {
-      title: '会员中心'
+      title: '我的'
     },
     children: [
       {
         path: '',
         component: () => import('./view/user'),
         meta: {
-          title: '会员中心'
+          title: '我的'
         }
       }
     ]
@@ -44,6 +44,14 @@ const routes = [
     name: 'userInfo',
     path: '/userInfo',
     component: () => import('./view/user/user.vue'),
+    meta: {
+      title: '商铺信息'
+    }
+  },
+  {
+    name: 'coupon',
+    path: '/coupon',
+    component: () => import('./view/coupon/index.vue'),
     meta: {
       title: '商铺信息'
     }

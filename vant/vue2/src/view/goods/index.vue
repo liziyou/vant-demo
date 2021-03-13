@@ -67,17 +67,12 @@ export default {
         return state.currentBar
       }
     }),
-    ...mapGetters({
-      getterCount(state, getters) {
-        return state.count
-      },
-      getCurrentBar: 'getCurrentBar'
-    })
+    ...mapGetters(['getCurrentBar'])
 
   },
   created() {
     console.log('getCurrentBar')
-    console.log(this.currentBar)
+    console.log(this.getCurrentBar)
     this.activeKey = this.currentBar.activeKey
   },
   methods: {
@@ -106,6 +101,9 @@ export default {
       this.currentSidebar = this.categoryData[e]
       this.add()
       this.currentSidebar.activeKey = this.activeKey
+      console.log('this.currentSidebar')
+      console.log(this.currentSidebar)
+
       this.setbar(this.currentSidebar)
       console.log('currentBar')
       console.log(this.currentBar)

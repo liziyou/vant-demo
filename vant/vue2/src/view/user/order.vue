@@ -1,13 +1,24 @@
 <template>
-  <div>
+  <div class="order">
     <van-nav-bar
       title="订单"
       left-arrow
+      class="left-icon"
       @click-left="onClickLeft"
     />
     <van-tabs v-model="active">
       <van-tab v-for="(item,index) in orderCategory" :key="index" :title="item.name">
-        内容 {{ index }}
+        <van-cell v-if="orderList.lenth > 0" />
+        <van-cell v-else class="order-content">
+          <div class="order-content-empty">
+            <div class="empty-img">
+              <img :src="orderEmpty">
+            </div>
+            <div class="empty-txt">
+              <p>无相关订单</p>
+            </div>
+          </div>
+        </van-cell>
       </van-tab>
     </van-tabs>
 
@@ -15,15 +26,18 @@
 </template>
 
 <script>
-import { Tabs, Tab, NavBar } from 'vant'
+import { Tabs, Tab, NavBar, Cell } from 'vant'
 export default {
   components: {
     [Tabs.name]: Tabs,
     [Tab.name]: Tab,
+    [Cell.name]: Cell,
     [NavBar.name]: NavBar
   },
   data() {
     return {
+      orderList: [],
+      orderEmpty: require('/static/images/img-order-empty.png'),
       active: 0,
       payImgs: [
         {
@@ -94,5 +108,32 @@ export default {
 </script>
 
 <style lang="less" scope>
-
+.order {
+  .left-icon {
+    .van-icon {
+      color: #323233;
+    }
+  }
+  &-content {
+    background: #fafafa;
+    &-empty {
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      justify-content: center;
+      .empty-img {
+         margin: 0 auto;
+        img {
+          width: 120px;
+          margin-top: 80px;
+        }
+      }
+      .empty-txt {
+        margin: 0 auto;
+        color: #999;
+        font-size: 14px;
+      }
+    }
+  }
+}
 </style>

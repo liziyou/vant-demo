@@ -2,7 +2,7 @@
   <div class="cart">
     <van-nav-bar title="购物车" :fixed="true">
       <!-- <van-icon slot="left" name="gift-o" /> -->
-      <van-icon slot="right" @click="delCart">删除</van-icon>
+      <van-icon v-if="checkedGoods.length > 0" slot="right" @click="delCart">删除</van-icon>
     </van-nav-bar>
     <van-checkbox-group v-if="showType" ref="checkboxGroup" v-model="checkedGoods" class="card-goods" @change="changeGoods">
       <van-cell
@@ -20,16 +20,26 @@
           :title="item.title"
           :thumb="item.thumb"
         >
-
           <template #footer>
             <van-stepper v-model="item.num" integer min="1" input-width="40px" />
           </template>
         </van-card>
-
       </van-cell>
-
+      <van-cell
+        v-if="goods.length < 1"
+        class="card-goods-item-empty"
+      >
+        <div class="img-box">
+          <img :src="goodEmpty">
+        </div>
+        <div class="txt">
+          <p>购物车空空如也，去选购一些商品吧～～</p>
+          <van-button round url="/" color="linear-gradient(to right, #ff6034, #ee0a24)">去首页</van-button>
+        </div>
+      </van-cell>
     </van-checkbox-group>
     <van-submit-bar
+      v-if="isEmpty"
       :price="totalPrice"
       :disabled="!checkedGoods.length"
       :button-text="submitBarText"
@@ -58,6 +68,7 @@ export default {
 
   data() {
     return {
+      goodEmpty: require('/static/images/cartEmpty.png'),
       checkedGoods: ['1', '2', '3'],
       allChecked: false,
       showType: true,
@@ -105,6 +116,9 @@ export default {
       console.log(total)
 
       return total
+    },
+    isEmpty() {
+      return this.goods.length > 0
     }
   },
   created() {
@@ -152,7 +166,7 @@ export default {
 <style lang="less">
 .card-goods {
   padding: 10px 0;
-  background-color: #fff;
+  background-color: #fafafa;
   margin-top: 36px;
   &-item {
     background: #fafafa;
@@ -162,8 +176,27 @@ export default {
     .van-card {
       flex: 1;
     }
-  }
+    &-empty {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fafafa;
+      margin-top: 60px;
+      .img-box,.txt {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+      }
+      .txt {
+        flex-direction: column;
+        button {
+          width: 40%;
+          margin-top: 30px;
+        }
+      }
+    }
 
+  }
   &__item {
     position: relative;
     background-color: #fafafa;

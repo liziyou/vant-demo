@@ -65,28 +65,6 @@ export default {
 </script>
 
 <style lang="less" scope>
-.user {
-  &-poster {
-    width: 100%;
-    height: 53vw;
-    display: block;
-  }
-
-  &-group {
-    margin-bottom: 15px;
-  }
-
-  &-links {
-    font-size: 12px;
-    text-align: center;
-    background-color: #fff;
-
-    .van-icon {
-      display: block;
-      font-size: 24px;
-    }
-  }
-}
 .my-swipe {
   .van-swipe-item {
     color: #fff;

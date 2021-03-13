@@ -4,14 +4,20 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     count: 0,
-    currentBar: localStorage.getItem('currentBar') || {}
+    currentBar: localStorage.getItem('currentBar') || {},
+    currentAddressInfo: {}
   },
-  getter: {
+  getters: {
     doneTodos: (state, getters) => {
       return state.todos.filter(todo => todo.done)
     },
     getCurrentBar: (state) => {
+      console.log(state)
+
       return state.currentBar
+    },
+    getCurrentAddressInfo: (state) => {
+      return state.currentAddressInfo
     }
   },
   mutations: {
@@ -19,8 +25,13 @@ const store = new Vuex.Store({
       state.count++
     },
     setCurrentBar(state, value) {
+      console.log('value')
+      console.log(value)
       localStorage.setItem('currentBar', value)
       state.currentBar = value
+    },
+    setCurrentAddressInfo(state, value) {
+      state.currentAddressInfo = value
     }
   },
   actions: {
